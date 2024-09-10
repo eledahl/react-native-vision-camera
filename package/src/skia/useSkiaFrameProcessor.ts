@@ -60,16 +60,16 @@ function withRotatedFrame(frame: Frame, canvas: SkCanvas, func: () => void): voi
     // 2. properly rotate canvas so Frame is rendered up-right.
     switch (frame.orientation) {
       case 'portrait':
-        // do nothing
+          canvas.translate( 0,frame.height / 2)
         break
       case 'landscape-left':
         // rotate two flips on (0,0) origin and move X + Y into view again
-        canvas.translate(frame.height, frame.width)
-        canvas.translate(270, 0)
+        canvas.translate(0, frame.width)
+        canvas.rotate(270, 0, 0)
         break
       case 'portrait-upside-down':
         // rotate three flips on (0,0) origin and move Y into view again
-        canvas.translate(frame.width, frame.height)
+        canvas.translate(frame.width, frame.height * 1.5)
         canvas.rotate(180, 0, 0)
         break
       case 'landscape-right':
